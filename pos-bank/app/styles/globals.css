@@ -3,13 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-disabled: #817d84;
+  --color-debt: #f10004;
+  --color-credit1: #47cc1b;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -65,3 +61,93 @@ body {
   top: 0;
   right: 0;
 }
+
+.title {
+  font-family: var(--font-family-font-1);
+  font-size: 1.1250rem;
+  font-weight: var(--font-weight-400);
+  letter-spacing: 0.0000em;
+}
+
+.title-bold {
+  font-family: var(--font-family-font-1);
+  font-size: 1.1250rem;
+  font-weight: var(--font-weight-700);
+  letter-spacing: 0.0000em;
+}
+
+.title-semi {
+  font-family: var(--font-family-font-1);
+  font-size: 1.1250rem;
+  font-weight: var(--font-weight-600);
+  letter-spacing: 0.0000em;
+}
+
+.text {
+  font-family: var(--font-family-font-1);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-400);
+  letter-spacing: 0.0000em;
+}
+
+.text-semi {
+  font-family: var(--font-family-font-1);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-600);
+  letter-spacing: 0.0000em;
+}
+
+.description {
+  font-family: var(--font-family-font-1);
+  font-size: 0.7500rem;
+  font-weight: var(--font-weight-400);
+  letter-spacing: 0.0000em;
+}
+
+.font-awesome-5-free-solid {
+  font-family: var(--font-family-font-2);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-400);
+  line-height: var(--line-height-28);
+  letter-spacing: 0.0000em;
+}
+
+.inter-semi-bold {
+  font-family: var(--font-family-font-1);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-600);
+  line-height: var(--line-height-24);
+  letter-spacing: 0.0000em;
+}
+
+.inter-bold {
+  font-family: var(--font-family-font-1);
+  font-size: var(--line-height-24);
+  font-weight: var(--font-weight-700);
+  line-height: var(--line-height-32);
+  letter-spacing: 0.0000em;
+}
+
+.inter-regular {
+  font-family: var(--font-family-font-1);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-400);
+  line-height: 20px;
+  letter-spacing: 0.0000em;
+}
+
+.semantic-input {
+  font-family: var(--font-family-font-1);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-400);
+  letter-spacing: 0.0000em;
+}
+
+.semantic-label {
+  font-family: var(--font-family-font-1);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-500);
+  line-height: 20px;
+  letter-spacing: 0.0000em;
+}
+

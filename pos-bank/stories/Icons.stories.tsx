@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import { Icons } from '../app/components/Icons';
+import Icons from '@/app/components/icons';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 const meta = {
   title: 'Components/Icons',
@@ -10,12 +10,12 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
-    variant: {
+    icon: {
       control: { type: 'inline-radio' },
       options: ['create', 'delete', 'edit'],
     },
-    onClick: {
-      action: 'clicked',
+    iconsFill: {
+      control: { type: 'color' },
     },
   },
 } satisfies Meta<typeof Icons>;
@@ -26,18 +26,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Create: Story = {
   args: {
-    variant: 'create',
+    icon: 'create'
   },
 };
 
 export const Delete: Story = {
   args: {
-    variant: 'delete',
+    icon: 'delete'
   },
 };
 
 export const Edit: Story = {
   args: {
-    variant: 'edit',
+    icon: 'edit'
   },
 };

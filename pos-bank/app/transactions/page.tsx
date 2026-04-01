@@ -1,9 +1,10 @@
-import { getTransactions } from "../../(admin)/_services/transactions";
+import { getTransactions } from "../(admin)/_services/transactions";
+
 
 export default function Transactions() {
   
 
-  const getCategoryColor = (category: Number) => {
+  const getCategoryColor = (category: number) => {
     switch (category) {
       case 1:
         return 'bg-blue-50 text-blue-600';
