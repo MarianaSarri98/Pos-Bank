@@ -1,7 +1,7 @@
 "use client";
 import type { NextPage } from "next";
 import { type CSSProperties } from "react";
-import Icons from "./icons";
+import Icons from "../icons";
 
 export type ButtonsType = {
   className?: string;
@@ -9,6 +9,7 @@ export type ButtonsType = {
   label: string
   iconButton?: string
   iconsFill?: CSSProperties["fill"];
+  onClick?: () => void;
 };
 
 const Buttons: NextPage<ButtonsType> = ({
@@ -16,11 +17,13 @@ const Buttons: NextPage<ButtonsType> = ({
   label = "new-transaction",
   showIcons = true,
   iconButton = "create",
-  iconsFill = "white"
+  iconsFill = "white",
+  onClick,
 }) => {
   return (
     <div
-      className={`w-[190px] h-[45px] relative rounded-lg bg-color-primary col-[1] row-[1] shrink-0 text-center text-lg text-color-white-solid font-[Inter] ${className}`}
+      onClick={onClick}
+      className={`w-[190px] h-[45px] relative rounded-lg bg-color-primary col-[1] row-[1] shrink-0 text-center text-lg text-color-white-solid font-[Inter] cursor-pointer ${className}`}
     >
       <div className="absolute top-[calc(50%_-_13.5px)] left-[calc(50%_-_67px)] w-[134px] h-[25px]">
         <div className="absolute top-[0px] left-[0px] grid grid-cols-[auto] [align-content:start] !pt-[3px] shrink-0">

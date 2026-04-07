@@ -1,5 +1,5 @@
 
-import Buttons from '@/app/components/buttons';
+import Buttons from '@/app/components/ui/buttons';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 const meta = {
