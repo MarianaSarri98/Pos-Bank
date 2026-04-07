@@ -1,6 +1,6 @@
 "use client";
 import type { NextPage } from "next";
-import { useMemo, type CSSProperties } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 
 export type IconsType = {
@@ -18,12 +18,28 @@ export type IconsType = {
 
 const Icons: NextPage<IconsType> = ({
   className = "",
-  icon = "delete",
+  icon = "create",
   iconsLeft,
   iconsOverflow,
   iconsTop,
   iconsFill
 }) => {
+  const [failedIconName, setFailedIconName] = useState<string | null>(null);
+
+  const normalizedIconName = useMemo(() => {
+    const trimmedIcon = icon.trim();
+    const withoutExtension = trimmedIcon.replace(/\.(svg|png)$/i, "");
+    return `${withoutExtension}.svg`;
+  }, [icon]);
+
+  const iconSrc = useMemo(() => {
+    if (failedIconName === normalizedIconName) {
+      return "/assets/create.svg";
+    }
+
+    return `/assets/${normalizedIconName}`;
+  }, [failedIconName, normalizedIconName]);
+
   const iconsStyle: CSSProperties = useMemo(() => {
     return {
       left: iconsLeft,
@@ -38,46 +54,21 @@ const Icons: NextPage<IconsType> = ({
       className={`absolute top-[calc(50%_-_7.5px)] left-[calc(50%_+_72px)] w-[18px] h-[18px] overflow-hidden ${className}`}
       style={iconsStyle}
     >
-      {icon === "create" && (
-        <Image
-          className="absolute h-3/4 w-9/12 top-[12.78%] right-[12.22%] bottom-[12.22%] left-[12.78%] max-w-full overflow-hidden max-h-full"
-          width={13.5}
-          height={13.5}
-          sizes="100vw"
-          alt=""
-          src="/Vector.svg"
-        />
-      )}
-      {icon === "edit" && (
-        <Image
-          className="absolute h-[41.67%] w-[41.67%] top-[12.78%] right-[12.22%] bottom-[45.56%] left-[46.11%] max-w-full overflow-hidden max-h-full"
-          width={7.5}
-          height={7.5}
-          sizes="100vw"
-          alt=""
-          src="/Vector1.svg"
-        />
-      )}
-      {icon === "delete" && (
-        <>
-          <Image
-            className="absolute h-3/4 w-9/12 top-[12.78%] right-[12.22%] bottom-[12.22%] left-[12.78%] max-w-full overflow-hidden max-h-full"
-            width={13.5}
-            height={13.5}
-            sizes="100vw"
-            alt=""
-            src="/Vector.svg"
-          />
-          <Image
-            className="absolute h-[41.67%] w-[41.67%] top-[12.78%] right-[12.22%] bottom-[45.56%] left-[46.11%] max-w-full overflow-hidden max-h-full"
-            width={7.5}
-            height={7.5}
-            sizes="100vw"
-            alt=""
-            src="/Vector1.svg"
-          />
-        </>
-      )}
+      <Image
+        className="absolute h-3/4 w-9/12 top-[12.78%] right-[12.22%] bottom-[12.22%] left-[12.78%] max-w-full overflow-hidden max-h-full"
+        width={13.5}
+        height={13.5}
+        sizes="100vw"
+        alt={`${icon} icon`}
+        src={iconSrc}
+        onError={() => {
+          if (failedIconName === normalizedIconName) {
+            return;
+          }
+
+          setFailedIconName(normalizedIconName);
+        }}
+      />
     </div>
   );
 };
