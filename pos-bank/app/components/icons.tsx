@@ -1,7 +1,6 @@
 "use client";
 import type { NextPage } from "next";
-import { useMemo, useState, type CSSProperties } from "react";
-import Image from "next/image";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 
 export type IconsType = {
   className?: string;
@@ -14,6 +13,7 @@ export type IconsType = {
   iconsOverflow?: CSSProperties["overflow"];
   iconsTop?: CSSProperties["top"];
   iconsFill?: CSSProperties["fill"];
+  ariaLabel?: string;
 };
 
 const Icons: NextPage<IconsType> = ({
@@ -22,7 +22,8 @@ const Icons: NextPage<IconsType> = ({
   iconsLeft,
   iconsOverflow,
   iconsTop,
-  iconsFill
+  iconsFill,
+  ariaLabel,
 }) => {
   const [failedIconName, setFailedIconName] = useState<string | null>(null);
 
@@ -40,36 +41,44 @@ const Icons: NextPage<IconsType> = ({
     return `/assets/${normalizedIconName}`;
   }, [failedIconName, normalizedIconName]);
 
+  useEffect(() => {
+    const probe = new window.Image();
+
+    probe.onload = () => {
+      setFailedIconName(null);
+    };
+
+    probe.onerror = () => {
+      setFailedIconName(normalizedIconName);
+    };
+
+    probe.src = `/assets/${normalizedIconName}`;
+  }, [normalizedIconName]);
+
   const iconsStyle: CSSProperties = useMemo(() => {
     return {
       left: iconsLeft,
       overflow: iconsOverflow,
       top: iconsTop,
-      fill: iconsFill
+      backgroundColor: iconsFill ?? "currentColor",
+      WebkitMaskImage: `url(${iconSrc})`,
+      WebkitMaskRepeat: "no-repeat",
+      WebkitMaskPosition: "center",
+      WebkitMaskSize: "contain",
+      maskImage: `url(${iconSrc})`,
+      maskRepeat: "no-repeat",
+      maskPosition: "center",
+      maskSize: "contain"
     };
-  }, [iconsLeft, iconsOverflow, iconsTop, iconsFill]);
+  }, [iconsFill, iconsLeft, iconsOverflow, iconsTop, iconSrc]);
 
   return (
     <div
-      className={`absolute top-[calc(50%_-_7.5px)] left-[calc(50%_+_72px)] w-[18px] h-[18px] overflow-hidden ${className}`}
+      className={`inline-flex items-center justify-center w-[18px] h-[18px] shrink-0 overflow-hidden ${className}`}
       style={iconsStyle}
-    >
-      <Image
-        className="absolute h-3/4 w-9/12 top-[12.78%] right-[12.22%] bottom-[12.22%] left-[12.78%] max-w-full overflow-hidden max-h-full"
-        width={13.5}
-        height={13.5}
-        sizes="100vw"
-        alt={`${icon} icon`}
-        src={iconSrc}
-        onError={() => {
-          if (failedIconName === normalizedIconName) {
-            return;
-          }
-
-          setFailedIconName(normalizedIconName);
-        }}
-      />
-    </div>
+      aria-label={ariaLabel}
+      aria-hidden={!ariaLabel}
+    />
   );
 };
 

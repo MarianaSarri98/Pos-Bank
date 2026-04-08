@@ -29,17 +29,12 @@ const Card: NextPage<CardType> = ({
 
   return (
     <div
-      className={`w-[372px] h-[110px] rounded-lg text-left text-3xl text-color-azure-11 font-[Inter] ${className}`}
+      className={`rounded-2xl border border-[var(--border-muted)] bg-[var(--surface)] p-6 text-left font-[Inter] ${className}`}
     >
-      <h1
-        className="!m-0 absolute top-[43.64%] left-[6.18%] text-[length:inherit] font-semibold font-[inherit]"
-        style={valueStyle}
-      >
+      <p className="mb-3 text-lg font-semibold text-[var(--text-muted)]">{title}</p>
+      <h2 className="text-3xl font-bold leading-tight lg:text-4xl" style={valueStyle}>
         {currencySymbol} {amount}
-      </h1>
-      <div className="absolute top-[15.45%] left-[6.18%] text-lg font-semibold text-color-disabled">
-        {title}
-      </div>
+      </h2>
     </div>
   );
 };

@@ -17,31 +17,28 @@ const Buttons: NextPage<ButtonsType> = ({
   label = "new-transaction",
   showIcons = true,
   iconButton = "create",
-  iconsFill = "white",
+  iconsFill = "var(--text-inverse)",
   onClick,
 }) => {
+  const hasIcon = !!showIcons;
+
   return (
-    <div
+    <button
+      type="button"
       onClick={onClick}
-      className={`w-[190px] h-[45px] relative rounded-lg bg-color-primary col-[1] row-[1] shrink-0 text-center text-lg text-color-white-solid font-[Inter] cursor-pointer ${className}`}
+      className={`inline-flex w-fit items-center justify-center py-3 rounded-lg bg-[var(--color-primary)] col-[1] row-[1] shrink-0 text-center text-base text-[var(--text-inverse)] font-[Inter] cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-primary)] ${hasIcon ? "gap-2 pl-4 pr-3" : "px-4"} ${className}`}
     >
-      <div className="absolute top-[calc(50%_-_13.5px)] left-[calc(50%_-_67px)] w-[134px] h-[25px]">
-        <div className="absolute top-[0px] left-[0px] grid grid-cols-[auto] [align-content:start] !pt-[3px] shrink-0">
-          <div className="w-[134px] relative flex items-center justify-center [text-shadow:0px_4px_4px_rgba(0,_0,_0,_0.25)] col-[1] row-[1]">
-            {label}
-          </div>
-        </div>
-      </div>
       {!!showIcons && (
         <Icons
           icon={iconButton}
-          iconsLeft="calc(50% - 90px)"
-          iconsOverflow="unset"
-          iconsTop="calc(50% - 7.5px)"
+          className="!static !w-[18px] !h-[18px]"
           iconsFill={iconsFill}
         />
       )}
-    </div>
+      <span className="leading-none [text-shadow:0px_4px_4px_rgba(0,_0,_0,_0.25)]">
+        {label}
+      </span>
+    </button>
   );
 };
 
