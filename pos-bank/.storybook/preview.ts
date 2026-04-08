@@ -1,3 +1,6 @@
+/// <reference types="vite/client" />
+import '../app/styles/index.css'
+import '../app/styles/globals.css';
 import type { Preview } from '@storybook/nextjs-vite'
 
 const preview: Preview = {
