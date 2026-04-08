@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# POS Bank
 
-## Getting Started
+Aplicacao front-end para controle financeiro pessoal, desenvolvida com Next.js (App Router), React e TypeScript.
 
-First, run the development server:
+## Visao Geral
+
+O projeto contem:
+
+- Dashboard com cards de saldo/debito/credito.
+- Tabela de transacoes com destaque visual por tipo/categoria.
+- Modal para cadastro de nova transacao.
+- Componentes reutilizaveis em `app/components`.
+- Storybook configurado para documentacao visual de componentes.
+
+## Tecnologias
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Storybook 10
+- ESLint
+- Vitest (dependencias instaladas)
+
+## Como Rodar Localmente
+
+Na pasta `pos-bank`:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra `http://localhost:3000` no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: inicia o ambiente de desenvolvimento.
+- `npm run build`: gera build de producao.
+- `npm run start`: inicia a aplicacao em modo producao.
+- `npm run lint`: executa analise estatica com ESLint.
+- `npm run lint:fix`: corrige problemas corrigiveis do lint.
+- `npm run storybook`: inicia o Storybook.
+- `npm run build-storybook`: gera build do Storybook.
 
-## Learn More
+## Estrutura Principal
 
-To learn more about Next.js, take a look at the following resources:
+- `app/dashboard`: tela inicial com resumo financeiro.
+- `app/transactions`: listagem de transacoes.
+- `app/components`: biblioteca de componentes da aplicacao.
+- `app/(admin)/_services`: mocks/servicos de dados (categorias e transacoes).
+- `stories`: historias de componentes no Storybook.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Melhorias Pendentes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Persistir transacoes em API e banco de dados (atualmente dados mockados).
+- Implementar criacao real de transacao no submit do modal.
+- Adicionar edicao e exclusao de transacoes.
+- Atualizar dashboard automaticamente apos criar transacao.
+- Incluir filtros na tabela (periodo, categoria, tipo, busca).
+- Adicionar paginacao/ordenacao para listas maiores.
+- Melhorar acessibilidade (teclado, foco, atributos ARIA, contraste).
+- Cobrir componentes e fluxos com testes unitarios e de integracao.
+- Formatar valores e datas com internacionalizacao (`pt-BR`).
+- Integrar notificacoes de sucesso/erro (toast) no fluxo de formulario.
+- Adicionar controle de estado global ou cache de dados (quando houver API).
+- Configurar pipeline de CI para lint, testes e build.
 
-## Deploy on Vercel
+## Proximos Passos Recomendados
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Conectar o modal de transacao a uma API.
+2. Recarregar a tabela e os cards com dados reais apos submit.
+3. Criar testes para `transactions-table`, modal e combobox de categoria.
