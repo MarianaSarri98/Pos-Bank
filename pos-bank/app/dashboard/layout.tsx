@@ -4,9 +4,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen p-6">
-      <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
-      {children}
-    </div>
+  <div className="space-y-8">
+     <h1 className="mb-6 text-2xl font-bold text-[var(--text-strong)]">Dashboard</h1>
+    {children}
+  </div>
   );
 }

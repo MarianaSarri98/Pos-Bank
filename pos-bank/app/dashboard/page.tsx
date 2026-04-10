@@ -1,4 +1,6 @@
 import Card from "../components/card";
+import TransactionsTable from "../components/transactions-table";
+import { getTransactions } from "../(admin)/_services/transactions";
 
 type CardConfig = {
   title: string;
@@ -13,38 +15,49 @@ const cardData: CardConfig[] = [
     title: "Saldo Atual",
     currencySymbol: "R$",
     amount: "3000",
-    valueColor: "#000000",
-    className: "relative flex bg-white",
+    valueColor: "var(--text-strong)",
+    className: "relative w-full bg-[var(--surface)]",
   },
   {
     title: "Débito",
     currencySymbol: "R$",
     amount: "3000",
-    valueColor: "#d41717",
-    className: "relative flex bg-white",
+    valueColor: "var(--color-debt)",
+    className: "relative w-full bg-[var(--surface)]",
   },
   {
     title: "Crédito",
     currencySymbol: "R$",
     amount: "3000",
-    valueColor: "#30a01c",
-    className: "relative flex bg-white",
+    valueColor: "var(--color-credit)",
+    className: "relative w-full bg-[var(--surface)]",
   },
 ];
 
 export default function Dashboard() {
+  const lastTransactions = getTransactions().transactions.slice(0, 3);
+
   return (
-    <div className="flex gap-6 p-6">
-      {cardData.map((card) => (
-        <Card
-          key={card.title}
-          title={card.title}
-          currencySymbol={card.currencySymbol}
-          amount={card.amount}
-          valueColor={card.valueColor}
-          className={card.className}
-        />
-      ))}
+    <div className="flex flex-col gap-8">
+      <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-3">
+        {cardData.map((card) => (
+          <Card
+            key={card.title}
+            title={card.title}
+            currencySymbol={card.currencySymbol}
+            amount={card.amount}
+            valueColor={card.valueColor}
+            className={card.className}
+          />
+        ))}
+      </div>
+
+      <div>
+        <h2 className="text-base font-semibold text-[var(--text-strong)] mb-3">
+          Últimas transações
+        </h2>
+        <TransactionsTable transactions={lastTransactions} />
+      </div>
     </div>
   );
 }
