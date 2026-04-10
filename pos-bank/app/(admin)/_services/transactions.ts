@@ -4,6 +4,7 @@ export type Transaction = {
     category: number;
     value: number;
     date: string;
+    type: 'income' | 'expense';
 };
 
 export const getTransactions = () => {
@@ -15,6 +16,7 @@ export const getTransactions = () => {
                 category: 1,
                 value: -350.0,
                 date: '2026-03-10',
+                type: 'expense',    
             },
             {
                 id: 2,
@@ -22,6 +24,7 @@ export const getTransactions = () => {
                 category: 2,
                 value: 5000.0,
                 date: '2026-03-01',
+                type: 'income',
             },
             {
                 id: 3,
@@ -29,6 +32,7 @@ export const getTransactions = () => {
                 category: 3,
                 value: -120.0,
                 date: '2026-02-28',
+                type: 'expense',
             },
             {
                 id: 4,
@@ -36,6 +40,7 @@ export const getTransactions = () => {
                 category: 1,
                 value: -180.0,
                 date: '2026-02-27',
+                type: 'expense',
             },
             {
                 id: 5,
@@ -43,6 +48,7 @@ export const getTransactions = () => {
                 category: 2,
                 value: 1500.0,
                 date: '2026-02-25',
+                type: 'income',
             },
             {
                 id: 6,
@@ -50,6 +56,7 @@ export const getTransactions = () => {
                 category: 4,
                 value: -250.0,
                 date: '2026-02-20',
+                type: 'expense',
             },
         ]
     };
