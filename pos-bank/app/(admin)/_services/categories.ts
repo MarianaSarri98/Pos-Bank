@@ -1,6 +1,6 @@
 export const getCategories = () => {
     return {
-        categories: [
+        categoriesExpense: [
             {
                 id: 1,
                 name: 'Alimentação',
@@ -16,6 +16,20 @@ export const getCategories = () => {
             {
                 id: 4,
                 name: 'Contas',
+            },
+        ],
+        categoriesIncome: [
+            {
+                id: 1,
+                name: 'Salário',
+            },
+            {
+                id: 2,
+                name: 'Bônus',
+            },
+            {
+                id: 3,
+                name: 'Investimentos',
             },
         ]
     };
