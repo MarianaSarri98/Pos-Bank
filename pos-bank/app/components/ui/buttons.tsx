@@ -1,4 +1,3 @@
-"use client";
 import type { NextPage } from "next";
 import { type CSSProperties } from "react";
 import Icons from "../icons";
@@ -26,7 +25,7 @@ const Buttons: NextPage<ButtonsType> = ({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex w-fit items-center justify-center py-3 rounded-lg bg-[var(--color-primary)] col-[1] row-[1] shrink-0 text-center text-base text-[var(--text-inverse)] font-[Inter] cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-primary)] ${hasIcon ? "gap-2 pl-4 pr-3" : "px-4"} ${className}`}
+      className={`inline-flex w-fit items-center justify-center py-3 rounded-lg bg-[var(--color-primary)] col-[1] row-[1] shrink-0 text-center text-base text-[var(--text-inverse)] cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-primary)] ${hasIcon ? "gap-2 pl-4 pr-3" : "px-4"} ${className}`}
     >
       {!!showIcons && (
         <Icons
@@ -35,7 +34,7 @@ const Buttons: NextPage<ButtonsType> = ({
           iconsFill={iconsFill}
         />
       )}
-      <span className="leading-none [text-shadow:0px_4px_4px_rgba(0,_0,_0,_0.25)]">
+      <span className="leading-none" style={{ textShadow: "0px 4px 4px color-mix(in srgb, var(--text-strong) 25%, transparent)" }}>
         {label}
       </span>
     </button>

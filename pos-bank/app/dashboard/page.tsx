@@ -34,8 +34,8 @@ const cardData: CardConfig[] = [
   },
 ];
 
-export default function Dashboard() {
-  const lastTransactions = getTransactions().transactions.slice(0, 3);
+export default async function Dashboard() {
+  const { transactions } = await getTransactions();
 
   return (
     <div className="flex flex-col gap-8">
@@ -56,7 +56,7 @@ export default function Dashboard() {
         <h2 className="text-base font-semibold text-[var(--text-strong)] mb-3">
           Últimas transações
         </h2>
-        <TransactionsTable transactions={lastTransactions} />
+        <TransactionsTable transactions={transactions} limit={3} showActions={false} />
       </div>
     </div>
   );
