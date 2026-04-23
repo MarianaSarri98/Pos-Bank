@@ -7,7 +7,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     icon: 'create',
-    iconsFill: '#2D6CDF',
+    iconsFill: 'var(--color-info)',
   },
   parameters: {
     layout: 'centered',
@@ -16,7 +16,7 @@ const meta = {
     icon: {
       control: { type: 'select' },
       options: ['create', 'delete', 'edit', 'dashboard', "wallet", "transaction"],
-      description: 'Nome do ícone em public/assets',
+      description: 'Nome do ícone em public',
     },
     iconsFill: {
       control: { type: 'color' },
@@ -42,14 +42,14 @@ export const Create: Story = {
 export const Delete: Story = {
   args: {
     icon: 'delete',
-    iconsFill: '#F10004',
+    iconsFill: 'var(--color-debt)',
   },
 };
 
 export const Edit: Story = {
   args: {
     icon: 'edit',
-    iconsFill: '#47CC1B',
+    iconsFill: 'var(--color-credit)',
   },
 };
 
@@ -72,12 +72,12 @@ export const IconGallery: Story = {
             alignItems: 'center',
             gap: 8,
             padding: 12,
-            border: '1px solid #E5E7EB',
+            border: '1px solid var(--border-muted)',
             borderRadius: 8,
             minWidth: 100,
           }}
         >
-          <Icons icon={name} iconsFill="#2D6CDF" />
+          <Icons icon={name} iconsFill="var(--color-info)" />
           <span style={{ fontSize: 12 }}>{name}</span>
         </div>
       ))}

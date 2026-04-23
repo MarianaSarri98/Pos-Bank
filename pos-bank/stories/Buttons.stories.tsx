@@ -9,7 +9,7 @@ const meta = {
     label: 'Nova Transação',
     showIcons: true,
     iconButton: 'create',
-    iconsFill: '#FFFFFF',
+    iconsFill: 'var(--text-inverse)',
   },
   parameters: {
     layout: 'centered',
@@ -30,7 +30,7 @@ const meta = {
     iconButton: {
       control: { type: 'select' },
       options: ['create', 'delete', 'edit', 'dashboard'],
-      description: 'Nome do ícone em public/assets',
+      description: 'Nome do ícone em public',
     },
     iconsFill: {
       control: { type: 'color' },

@@ -1,20 +1,20 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import Image from "next/image";
 
-export const Github = "/assets/github.svg";
-export const Discord = "/assets/discord.svg";
-export const Youtube = "/assets/youtube.svg";
-export const Tutorials = "/assets/tutorials.svg";
-export const Styling = "/assets/styling.png";
-export const Context = "/assets/context.png";
-export const Assets = "/assets/assets.png";
-export const Docs = "/assets/docs.png";
-export const Share = "/assets/share.png";
-export const FigmaPlugin = "/assets/figma-plugin.png";
-export const Testing = "/assets/testing.png";
-export const Accessibility = "/assets/accessibility.png";
-export const Theming = "/assets/theming.png";
-export const AddonLibrary = "/assets/addon-library.png";
+export const Github = "/github.svg";
+export const Discord = "/discord.svg";
+export const Youtube = "/youtube.svg";
+export const Tutorials = "/tutorials.svg";
+export const Styling = "/styling.png";
+export const Context = "/context.png";
+export const Assets = "/assets.png";
+export const Docs = "/docs.png";
+export const Share = "/share.png";
+export const FigmaPlugin = "/figma-plugin.png";
+export const Testing = "/testing.png";
+export const Accessibility = "/accessibility.png";
+export const Theming = "/theming.png";
+export const AddonLibrary = "/addon-library.png";
 
 export const RightArrow = () => <svg 
     viewBox="0 0 14 14" 
@@ -47,6 +47,7 @@ export const RightArrow = () => <svg
         alt="A wall of logos representing different styling technologies"
         width={0}
         height={0}
+        placeholder="blur"
         style={{ width: '100%', height: 'auto' }}
       />
       <h4 className="sb-section-item-heading">Add styling and CSS</h4>
@@ -60,6 +61,7 @@ export const RightArrow = () => <svg
       <Image 
         width={0}
         height={0}
+        placeholder="blur"
         style={{ width: '100%', height: 'auto' }}
         src={Context}
         alt="An abstraction representing the composition of data for a component"
@@ -75,6 +77,7 @@ export const RightArrow = () => <svg
       <Image 
         width={0}
         height={0}
+        placeholder="blur"
         style={{ width: '100%', height: 'auto' }} 
         src={Assets} 
         alt="A representation of typography and image assets" 
@@ -105,6 +108,7 @@ export const RightArrow = () => <svg
         <Image 
           width={0}
           height={0}
+          placeholder="blur"
           style={{ width: '100%', height: 'auto' }} 
           src={Docs} 
           alt="A screenshot showing the autodocs tag being set, pointing a docs page being generated" 
@@ -121,6 +125,7 @@ export const RightArrow = () => <svg
         <Image 
           width={0}
           height={0}
+          placeholder="blur"
           style={{ width: '100%', height: 'auto' }} 
           src={Share} 
           alt="A browser window showing a Storybook being published to a chromatic.com URL" 
@@ -136,6 +141,7 @@ export const RightArrow = () => <svg
         <Image 
           width={0}
           height={0}
+          placeholder="blur"
           style={{ width: '100%', height: 'auto' }} 
           src={FigmaPlugin} 
           alt="Windows showing the Storybook plugin in Figma" 
@@ -152,6 +158,7 @@ export const RightArrow = () => <svg
         <Image 
           width={0}
           height={0}
+          placeholder="blur"
           style={{ width: '100%', height: 'auto' }} 
           src={Testing} 
           alt="Screenshot of tests passing and failing" 
@@ -168,6 +175,7 @@ export const RightArrow = () => <svg
         <Image 
           width={0}
           height={0}
+          placeholder="blur"
           style={{ width: '100%', height: 'auto' }} 
           src={Accessibility} 
           alt="Screenshot of accessibility tests passing and failing" 
@@ -183,6 +191,7 @@ export const RightArrow = () => <svg
         <Image 
           width={0}
           height={0}
+          placeholder="blur"
           style={{ width: '100%', height: 'auto' }} 
           src={Theming} 
           alt="Screenshot of Storybook in light and dark mode" 
@@ -210,6 +219,7 @@ export const RightArrow = () => <svg
     <Image 
       width={650}
       height={347}
+      placeholder="blur"
       src={AddonLibrary} 
       alt="Integrate your tools with Storybook to connect workflows." 
     />
@@ -222,6 +232,7 @@ export const RightArrow = () => <svg
         width={32}
         height={32}
         layout="fixed"
+        placeholder="blur"
         src={Github} 
         alt="Github logo" 
         className="sb-explore-image"
@@ -238,6 +249,7 @@ export const RightArrow = () => <svg
         width={33}
         height={32}
         layout="fixed"
+        placeholder="blur"
         src={Discord} 
         alt="Discord logo" 
         className="sb-explore-image"
@@ -256,6 +268,7 @@ export const RightArrow = () => <svg
         width={32}
         height={32}
         layout="fixed"
+        placeholder="blur"
         src={Youtube} 
         alt="Youtube logo" 
         className="sb-explore-image"
@@ -274,6 +287,7 @@ export const RightArrow = () => <svg
         width={33}
         height={32}
         layout="fixed"
+        placeholder="blur"
         src={Tutorials} 
         alt="A book" 
         className="sb-explore-image"
@@ -309,7 +323,7 @@ export const RightArrow = () => <svg
   }
 
   .sb-section a:not(h1 a, h2 a, h3 a) {
-    font-size: 14px;
+    font-size: var(--font-size-body, 0.875rem);
   }
 
   .sb-section-item, .sb-grid-item {
@@ -357,10 +371,10 @@ export const RightArrow = () => <svg
     display: flex;
     align-items: center;
     position: relative;
-    background-color: #EEF3F8;
+    background-color: var(--surface-soft);
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    background: #EEF3F8;
+    border: 1px solid var(--border-muted);
+    background: var(--surface-soft);
     height: 180px;
     margin-bottom: 48px;
     overflow: hidden;
@@ -389,7 +403,7 @@ export const RightArrow = () => <svg
     transform: rotate(-15deg);
     margin-left: 40px;
     margin-top: -72px;
-    box-shadow: 0 0 1px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 1px transparent;
     backface-visibility: hidden;
   }
 
