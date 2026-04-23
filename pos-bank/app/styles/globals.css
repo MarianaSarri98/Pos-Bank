@@ -6,7 +6,7 @@
   --text-strong: #000000;
   --text-muted: #817d84;
   --text-inverse: #ffffff;
-  --font-family-base: "Inter", Arial, Helvetica, sans-serif;
+  --font-family-base: Arial, Helvetica, sans-serif;
   --font-size-caption: 0.75rem;
   --font-size-body: 0.875rem;
   --font-size-body-lg: 1rem;
@@ -47,10 +47,21 @@
   }
 }
 
+html {
+  font-family: var(--font-family-base);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 /* Icons component */
@@ -137,10 +148,10 @@ body {
 }
 
 .font-awesome-5-free-solid {
-  font-family: var(--font-family-font-2);
-  font-size: var(--font-size-20);
-  font-weight: var(--font-weight-400);
-  line-height: var(--line-height-28);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-lg);
+  font-weight: 400;
+  line-height: 1.75rem;
   letter-spacing: 0.0000em;
 }
 

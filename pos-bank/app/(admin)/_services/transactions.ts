@@ -7,7 +7,7 @@ export type Transaction = {
     type: 'income' | 'expense';
 };
 
-export const getTransactions = () => {
+export const getTransactions = (): { transactions: Transaction[] } => {
     return {
         transactions: [
             {
