@@ -1,17 +1,11 @@
-"use client";
 import type { NextPage } from "next";
-import { useMemo, type CSSProperties } from "react";
 
 export type CardType = {
   className?: string;
-
-  /** Variant props */
-  title?: string
-
-  /** Style props */
+  title?: string;
   currencySymbol?: string;
   amount?: string;
-  valueColor?: CSSProperties["color"];
+  valueColor?: string;
 };
 
 const Card: NextPage<CardType> = ({
@@ -21,18 +15,12 @@ const Card: NextPage<CardType> = ({
   amount = "3000",
   valueColor,
 }) => {
-  const valueStyle: CSSProperties = useMemo(() => {
-    return {
-      color: valueColor,
-    };
-  }, [valueColor]);
-
   return (
     <div
-      className={`rounded-2xl border border-[var(--border-muted)] bg-[var(--surface)] p-6 text-left font-[Inter] ${className}`}
+      className={`rounded-2xl border border-[var(--border-muted)] bg-[var(--surface)] p-6 text-left ${className}`}
     >
       <p className="mb-3 text-lg font-semibold text-[var(--text-muted)]">{title}</p>
-      <h2 className="text-3xl font-bold leading-tight lg:text-4xl" style={valueStyle}>
+      <h2 className="text-3xl font-bold leading-tight lg:text-4xl" style={{ color: valueColor }}>
         {currencySymbol} {amount}
       </h2>
     </div>
