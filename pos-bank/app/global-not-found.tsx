@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./styles/globals.css";
 
 export const metadata: Metadata = {
@@ -16,12 +17,12 @@ export default function GlobalNotFound() {
             <p className="mb-6 text-sm text-[var(--text-muted)]">
               A URL informada não existe no sistema.
             </p>
-            <a
+            <Link
               href="/dashboard"
               className="inline-flex rounded-lg bg-[var(--color-primary)] px-4 py-2 font-semibold text-[var(--text-inverse)] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
             >
               Voltar para o dashboard
-            </a>
+            </Link>
           </section>
         </main>
       </body>

@@ -1,7 +1,7 @@
 import TransactionsTable from "../components/transactions-table";
 import { getTransactions } from "../(admin)/_services/transactions";
 
-export default async function Transactions() {
+export default function Transactions() {
   const { transactions } = getTransactions();
 
   return (
