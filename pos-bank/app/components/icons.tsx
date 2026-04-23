@@ -36,7 +36,6 @@ const Icons: NextPage<IconsType> = ({
         alt={ariaLabel ?? ""}
         width={18}
         height={18}
-        placeholder="blur"
         style={{ objectFit: "contain", color: iconsFill ?? "currentColor" }}
         onError={() => setFailed(true)}
       />
