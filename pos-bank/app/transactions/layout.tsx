@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Transações | POS Bank",
+};
+
 export default function TransactionsLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-full min-h-0 flex-col gap-6">

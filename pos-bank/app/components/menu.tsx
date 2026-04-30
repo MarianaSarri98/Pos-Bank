@@ -18,7 +18,7 @@ export function Menu() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex h-auto shrink-0 w-[280px] flex-col border-r border-[var(--border-muted)] bg-[var(--surface)] px-6 py-5 lg:h-full">
+    <nav aria-label="Navegação principal" className="flex h-auto shrink-0 w-[280px] flex-col border-r border-[var(--border-muted)] bg-[var(--surface)] px-6 py-5 lg:h-full">
       <div className="mb-8 flex items-center gap-3">
         <div className="flex h-[34px] w-[34px] items-center justify-center rounded-[10px] bg-[var(--color-primary)]">
           <Icons icon="wallet" iconsFill="var(--text-inverse)" />

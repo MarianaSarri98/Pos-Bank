@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { getCategories } from "../(admin)/_services/categories";
 import type { Transaction } from "../(admin)/_services/transactions";
-import { deleteTransactionAction, updateTransactionAction } from "../(admin)/_actions/transactions";
+import { useTransactions } from "../providers/transactions-provider";
 import { ConfirmationDialog } from "./confirmation-dialog";
 import Icons from "./icons";
 import { TransactionModal } from "./transaction-modal";
 
 type TransactionsTableProps = {
-  transactions: Transaction[];
   limit?: number;
   showActions?: boolean;
 };
@@ -35,9 +34,9 @@ function formatDate(date: string) {
   return Number.isNaN(parsed.getTime()) ? date : dateFormatter.format(parsed);
 }
 
-export default function TransactionsTable({ transactions, limit, showActions = true }: TransactionsTableProps) {
+export default function TransactionsTable({ limit, showActions = true }: TransactionsTableProps) {
   const categories = getCategories();
-  const [, startTransition] = useTransition();
+  const { transactions, updateTransaction, deleteTransaction } = useTransactions();
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const [transactionToDelete, setTransactionToDelete] = useState<Transaction | null>(null);
 
@@ -50,21 +49,15 @@ export default function TransactionsTable({ transactions, limit, showActions = t
 
   const handleDelete = () => {
     if (!transactionToDelete) return;
-
-    startTransition(async () => {
-      await deleteTransactionAction(transactionToDelete.id);
-      if (selectedTransaction?.id === transactionToDelete.id) setSelectedTransaction(null);
-      setTransactionToDelete(null);
-    });
+    deleteTransaction(transactionToDelete.id);
+    if (selectedTransaction?.id === transactionToDelete.id) setSelectedTransaction(null);
+    setTransactionToDelete(null);
   };
 
-  const handleUpdate = (input: Parameters<typeof updateTransactionAction>[1]) => {
+  const handleUpdate = (input: Parameters<typeof updateTransaction>[1]) => {
     if (!selectedTransaction) return;
-
-    startTransition(async () => {
-      await updateTransactionAction(selectedTransaction.id, input);
-      setSelectedTransaction(null);
-    });
+    updateTransaction(selectedTransaction.id, input);
+    setSelectedTransaction(null);
   };
 
   return (

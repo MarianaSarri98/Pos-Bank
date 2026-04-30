@@ -1,73 +1,84 @@
 # POS Bank
 
-Aplicacao front-end para controle financeiro pessoal, desenvolvida com Next.js (App Router), React e TypeScript.
+Aplicação front-end para gerenciamento financeiro pessoal, desenvolvida com Next.js (App Router), React e TypeScript;
 
-## Visao Geral
+## Funcionalidades
 
-O projeto contem:
-
-- Dashboard com cards de saldo/debito/credito.
-- Tabela de transacoes com destaque visual por tipo/categoria.
-- Modal para cadastro de nova transacao.
-- Componentes reutilizaveis em `app/components`.
-- Storybook configurado para documentacao visual de componentes.
+- **Dashboard** — exibe saldo atual, total de débitos, total de créditos e as últimas 3 transações.
+- **Listagem de transações** — tabela completa com categoria, data e valor formatados.
+- **Adicionar transação** — modal acessível com campos de tipo, descrição, categoria, valor e data.
+- **Editar transação** — modal pré-preenchido para alterar qualquer campo de uma transação existente.
+- **Excluir transação** — diálogo de confirmação antes da remoção.
+- **Storybook** — documentação visual dos componentes do Design System.
 
 ## Tecnologias
 
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS 4
-- Storybook 10
-- ESLint
-- Vitest (dependencias instaladas)
+- [Next.js 16](https://nextjs.org/) (App Router)
+- [React 19](https://react.dev/)
+- [TypeScript 5](https://www.typescriptlang.org/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Storybook 10](https://storybook.js.org/)
+- [Vitest](https://vitest.dev/) + [Playwright](https://playwright.dev/)
+- [ESLint 9](https://eslint.org/)
 
-## Como Rodar Localmente
+## Pré-requisitos
 
-Na pasta `pos-bank`:
+- [Node.js](https://nodejs.org/) >= 18
+- npm >= 9
+
+## Como rodar localmente
 
 ```bash
+# 1. Entre na pasta do projeto
+cd pos-bank
+
+# 2. Instale as dependências
 npm install
+
+# 3. Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
-Abra `http://localhost:3000` no navegador.
+Acesse **http://localhost:3000** no navegador.
 
-## Scripts
+## Storybook
 
-- `npm run dev`: inicia o ambiente de desenvolvimento.
-- `npm run build`: gera build de producao.
-- `npm run start`: inicia a aplicacao em modo producao.
-- `npm run lint`: executa analise estatica com ESLint.
-- `npm run lint:fix`: corrige problemas corrigiveis do lint.
-- `npm run storybook`: inicia o Storybook.
-- `npm run build-storybook`: gera build do Storybook.
+```bash
+npm run storybook
+```
 
-## Estrutura Principal
+Acesse **http://localhost:6006** para visualizar a documentação dos componentes.
 
-- `app/dashboard`: tela inicial com resumo financeiro.
-- `app/transactions`: listagem de transacoes.
-- `app/components`: biblioteca de componentes da aplicacao.
-- `app/(admin)/_services`: mocks/servicos de dados (categorias e transacoes).
-- `stories`: historias de componentes no Storybook.
+## Scripts disponíveis
 
-## Melhorias Pendentes
+| Comando | Descrição |
+|---|---|
+| `npm run dev` | Inicia o ambiente de desenvolvimento |
+| `npm run build` | Gera o build de produção |
+| `npm run start` | Inicia a aplicação em modo produção |
+| `npm run lint` | Executa análise estática com ESLint |
+| `npm run lint:fix` | Corrige problemas corrigíveis do lint automaticamente |
+| `npm run storybook` | Inicia o Storybook na porta 6006 |
+| `npm run build-storybook` | Gera o build estático do Storybook |
 
-- Persistir transacoes em API e banco de dados (atualmente dados mockados).
-- Implementar criacao real de transacao no submit do modal.
-- Adicionar edicao e exclusao de transacoes.
-- Atualizar dashboard automaticamente apos criar transacao.
-- Incluir filtros na tabela (periodo, categoria, tipo, busca).
-- Adicionar paginacao/ordenacao para listas maiores.
-- Melhorar acessibilidade (teclado, foco, atributos ARIA, contraste).
-- Cobrir componentes e fluxos com testes unitarios e de integracao.
-- Formatar valores e datas com internacionalizacao (`pt-BR`).
-- Integrar notificacoes de sucesso/erro (toast) no fluxo de formulario.
-- Adicionar controle de estado global ou cache de dados (quando houver API).
-- Configurar pipeline de CI para lint, testes e build.
+## Estrutura do projeto
 
-## Proximos Passos Recomendados
+```
+pos-bank/
+├── app/
+│   ├── (admin)/
+│   │   ├── _actions/       # Server actions (legado, substituídas pelo provider)
+│   │   └── _services/      # Dados mockados de transações e categorias
+│   ├── components/         # Componentes reutilizáveis (Header, Menu, Modal, Tabela...)
+│   │   └── ui/             # Componentes base do Design System (Button, Combobox)
+│   ├── dashboard/          # Página de dashboard (Home)
+│   ├── providers/          # React Context para estado global de transações
+│   ├── styles/             # CSS global e Tailwind
+│   └── transactions/       # Página de listagem completa de transações
+├── stories/                # Histórias do Storybook por componente
+└── public/
+```
 
-1. Conectar o modal de transacao a uma API.
-2. Recarregar a tabela e os cards com dados reais apos submit.
-3. Criar testes para `transactions-table`, modal e combobox de categoria.
+## Dados mockados
+
+Os dados são gerenciados em memória via React Context (`app/providers/transactions-provider.tsx`). Não é necessária nenhuma configuração de banco de dados ou variável de ambiente para rodar o projeto.

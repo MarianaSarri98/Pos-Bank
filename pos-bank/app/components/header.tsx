@@ -1,18 +1,16 @@
 "use client";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import Buttons from "./ui/buttons";
 import { TransactionModal } from "./transaction-modal";
-import { addTransactionAction } from "../(admin)/_actions/transactions";
+import { useTransactions } from "../providers/transactions-provider";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [, startTransition] = useTransition();
+  const { addTransaction } = useTransactions();
 
   const handleAdd: React.ComponentProps<typeof TransactionModal>["onSubmit"] = (input) => {
-    startTransition(async () => {
-      await addTransactionAction(input);
-      setIsModalOpen(false);
-    });
+    addTransaction(input);
+    setIsModalOpen(false);
   };
 
   return (

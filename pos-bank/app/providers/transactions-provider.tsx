@@ -1,0 +1,53 @@
+"use client";
+
+import { createContext, useContext, useState } from "react";
+import type { Transaction, TransactionInput } from "../(admin)/_services/transactions";
+
+type TransactionsContextType = {
+  transactions: Transaction[];
+  addTransaction: (input: TransactionInput) => void;
+  updateTransaction: (id: number, input: TransactionInput) => void;
+  deleteTransaction: (id: number) => void;
+};
+
+const TransactionsContext = createContext<TransactionsContextType | null>(null);
+
+const initialTransactions: Transaction[] = [
+  { id: 1, description: "Supermercado Silva", category: 1, value: -350.0, date: "2026-03-10", type: "expense" },
+  { id: 2, description: "Salário", category: 2, value: 5000.0, date: "2026-03-01", type: "income" },
+  { id: 3, description: "Farmácia Central", category: 3, value: -120.0, date: "2026-02-28", type: "expense" },
+  { id: 4, description: "Restaurante do Porto", category: 1, value: -180.0, date: "2026-02-27", type: "expense" },
+  { id: 5, description: "Freelance Tech", category: 2, value: 1500.0, date: "2026-02-25", type: "income" },
+  { id: 6, description: "Conta de Luz", category: 4, value: -250.0, date: "2026-02-20", type: "expense" },
+];
+
+export function TransactionsProvider({ children }: { children: React.ReactNode }) {
+  const [transactions, setTransactions] = useState<Transaction[]>(initialTransactions);
+
+  const addTransaction = (input: TransactionInput) => {
+    setTransactions((prev) => {
+      const nextId = prev.reduce((max, t) => Math.max(max, t.id), 0) + 1;
+      return [{ id: nextId, ...input }, ...prev];
+    });
+  };
+
+  const updateTransaction = (id: number, input: TransactionInput) => {
+    setTransactions((prev) => prev.map((t) => (t.id === id ? { ...t, ...input } : t)));
+  };
+
+  const deleteTransaction = (id: number) => {
+    setTransactions((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  return (
+    <TransactionsContext.Provider value={{ transactions, addTransaction, updateTransaction, deleteTransaction }}>
+      {children}
+    </TransactionsContext.Provider>
+  );
+}
+
+export function useTransactions() {
+  const ctx = useContext(TransactionsContext);
+  if (!ctx) throw new Error("useTransactions must be used within TransactionsProvider");
+  return ctx;
+}
